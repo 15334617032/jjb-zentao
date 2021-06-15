@@ -3,7 +3,7 @@ package com.jjb.jjbzentao.pojo;
 import lombok.Data;
 
 /**
- * @Author zyq
+ * @Author zxq
  * @Description 分页对象
  **/
 @Data
