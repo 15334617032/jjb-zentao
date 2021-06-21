@@ -13,7 +13,6 @@ import java.util.Date;
  * @date 2021/6/11
  */
 @Data
-@ApiModel("迭代信息")
 public class ProjectPO {
 
     @ApiModelProperty(value="项目名称")
@@ -28,8 +27,5 @@ public class ProjectPO {
 
     @ApiModelProperty(value="创建日期")
     private Date begin;
-
-
-
 
 }

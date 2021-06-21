@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jjb.jjbzentao.dao.LogDao">
+
+
+    <select id="list" resultType="com.jjb.jjbzentao.pojo.Log">
+        SELECT z.date,
+               z.comment,
+               z.action,
+               z.objectType,
+               zu.realname,
+               CASE
+                       WHEN z.objectType = 'bug' THEN
+                               (SELECT zb.title FROM zt_bug zb WHERE z.objectID = zb.id)
+
+                       WHEN z.objectType = 'build' THEN
+                               (SELECT zb2.name FROM zt_build zb2 WHERE z.objectID = zb2.id)
+
+                       WHEN z.objectType = 'case' THEN
+                               (SELECT zc.title FROM zt_case zc WHERE z.objectID = zc.id)
+
+                       WHEN z.objectType = 'caselib' THEN
+                               (SELECT zc2.title FROM zt_case zc2 WHERE z.objectID = zc2.id)
+
+                       WHEN z.objectType = 'module' THEN
+                               (SELECT zm.name FROM zt_module zm WHERE z.objectID = zm.id)
+
+                       WHEN z.objectType = 'product' THEN
+                               (SELECT zp.name FROM zt_product zp WHERE z.objectID = zp.id)
+
+                       WHEN z.objectType = 'productplan' THEN
+                               (SELECT zp2.title FROM zt_productplan zp2 WHERE z.objectID = zp2.id)
+
+                       WHEN z.objectType = 'project' THEN
+                               (SELECT zp3.name FROM zt_project zp3 WHERE z.objectID = zp3.id)
+
+                       WHEN z.objectType = 'release' THEN
+                               (SELECT zr.name FROM zt_release zr WHERE z.objectID = zr.id)
+
+                       WHEN z.objectType = 'story' THEN
+                               (SELECT zs.title FROM zt_story zs WHERE z.objectID = zs.id)
+
+                       WHEN z.objectType = 'task' THEN
+                               (SELECT zt.name FROM zt_task zt WHERE z.objectID = zt.id)
+
+                       WHEN z.objectType = 'testreport' THEN
+                               (SELECT zt2.title FROM zt_testreport zt2 WHERE z.objectID = zt2.id)
+
+                       WHEN z.objectType = 'testsuite' THEN
+                               (SELECT zt3.name FROM zt_testsuite zt3 WHERE z.objectID = zt3.id)
+
+                       WHEN z.objectType = 'testtask' THEN
+                               (SELECT zt4.name FROM zt_testtask zt4 WHERE z.objectID = zt4.id)
+
+                       WHEN z.objectType = 'webhook' THEN
+                               (SELECT zw.name FROM zt_webhook zw WHERE z.objectID = zw.id)
+                       END AS 'objective'
+        FROM zt_action z,
+             zt_user zu
+        WHERE zu.account = z.actor
+            <include refid="keySearch"/>
+    </select>
+
+
+    <!--关键字搜索-->
+    <sql id="keySearch">
+        <where>
+            <if test="p.begin != null and p.begin!=''">
+                AND z.date &gt;=#{p.begin}
+            </if>
+            <if test="p.end != null and p.end!=''">
+                AND z.date &lt;=#{p.end}
+            </if>
+        </where>
+        ORDER BY z.date DESC
+    </sql>
+
+</mapper>
