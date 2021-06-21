@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author zxq
  * @date 2021/6/21
@@ -19,8 +21,8 @@ public class Log {
     @ApiModelProperty(value="操作者")
     private String realname;
     @ApiModelProperty(value="时间")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = CommonUtil.YMD, timezone = CommonUtil.DEFAULT_TIMEZONE_GMT)
-    private String date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = CommonUtil.YMDHMS, timezone = CommonUtil.DEFAULT_TIMEZONE_GMT)
+    private Date date;
     @ApiModelProperty(value="备注")
     private String comment;
     @ApiModelProperty(value="对象类型")

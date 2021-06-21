@@ -57,7 +57,6 @@
                        END AS 'objective'
         FROM zt_action z,
              zt_user zu
-        WHERE zu.account = z.actor
             <include refid="keySearch"/>
     </select>
 
@@ -65,11 +64,12 @@
     <!--关键字搜索-->
     <sql id="keySearch">
         <where>
-            <if test="p.begin != null and p.begin!=''">
-                AND z.date &gt;=#{p.begin}
+            zu.account = z.actor
+            <if test="p.begin != null">
+             AND   DATE_FORMAT(z.date,'%Y%m%d') &gt;=DATE_FORMAT(#{p.begin},'%Y%m%d')
             </if>
-            <if test="p.end != null and p.end!=''">
-                AND z.date &lt;=#{p.end}
+            <if test="p.end != null ">
+                AND DATE_FORMAT(z.date,'%Y%m%d') &gt;=DATE_FORMAT(#{p.end},'%Y%m%d')
             </if>
         </where>
         ORDER BY z.date DESC
