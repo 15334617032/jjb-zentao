@@ -28,7 +28,7 @@ public enum ActionEnum {
     ACTIVATED("activated","激活了"),
     BUGCONFIRMED("bugconfirmed","错误确认"),
     CANCELED("canceled","取消"),
-    CHANGED("changed","改变"),
+    CHANGED("changed","变更了"),
     EDITESTIMATE("editestimate","编辑估计"),
     EDITFILE("editfile","编辑文件"),
     CLOSED("closed","关闭"),
