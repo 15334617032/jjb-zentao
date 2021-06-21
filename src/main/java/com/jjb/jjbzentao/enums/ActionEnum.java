@@ -19,9 +19,9 @@ public enum ActionEnum {
     /**
      * 操作枚举
      */
-    LOGIN("login","登录"),
+    LOGIN("login","登录了"),
     CREATED("created","创建"),
-    LOGOUT("logout","退出"),
+    LOGOUT("logout","退出了"),
     OPENED("opened","创建"),
     EDITED("edited","编辑了"),
     COMMENTED("commented","评论了"),

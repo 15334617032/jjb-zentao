@@ -31,6 +31,9 @@ public class LogServerImpl implements LogServer {
     public List<Log> list(LogPO po) {
         List<Log> result=logDao.list(po);
         result.forEach(e->{
+            if (e.getAction().equals(ActionEnum.LOGIN.getCode()) || e.getAction().equals(ActionEnum.LOGOUT.getCode())){
+                e.setObjective("系统");
+            }
             if (ActionEnum.map.containsKey(e.getAction())){
                 e.setAction(ActionEnum.map.get(e.getAction()));
             }else {
