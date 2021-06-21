@@ -32,7 +32,7 @@ public enum ActionEnum {
     EDITESTIMATE("editestimate","编辑估计"),
     EDITFILE("editfile","编辑文件"),
     CLOSED("closed","关闭"),
-    FINISHED("finished","完成"),
+    FINISHED("finished","完成了"),
     LINKCHILDSTORY("linkchildstory","链接子节点"),
     LINKED2BUILD("linked2build","链接 2 构建"),
     LINKED2PLAN("linked2plan","联动2计划"),
