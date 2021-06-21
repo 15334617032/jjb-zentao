@@ -5,6 +5,7 @@ import com.jjb.jjbzentao.utils.CommonUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -22,10 +23,14 @@ public class ProjectPO {
             "enum('wait','doing','done','pause','cancel','closed')")
     private String status;
 
+    @ApiModelProperty(value="创建日期")
+    @DateTimeFormat(pattern = CommonUtil.YMD)
+    private Date begin;
+
     @ApiModelProperty(value="截止时间")
+    @DateTimeFormat(pattern = CommonUtil.YMD)
     private Date end;
 
-    @ApiModelProperty(value="创建日期")
-    private Date begin;
+
 
 }

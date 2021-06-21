@@ -32,11 +32,11 @@
             <if test="p.status != null and p.status!=''">
                 AND t.status = #{p.status}
             </if>
-            <if test="p.begin != null and p.begin!=''">
-                AND t.begin &gt;=#{p.begin}
+            <if test="p.begin != null ">
+                AND  DATE_FORMAT(t.begin,'%Y%m%d') &gt;=DATE_FORMAT(#{p.begin},'%Y%m%d')
             </if>
-            <if test="p.end != null and p.end!=''">
-                AND t.end &lt;=#{p.end}
+            <if test="p.end != null ">
+                AND  DATE_FORMAT(t.end,'%Y%m%d') &lt;=DATE_FORMAT(#{p.end},'%Y%m%d')
             </if>
             AND t.deleted ='0' AND t.status!='closed'
         </where>
