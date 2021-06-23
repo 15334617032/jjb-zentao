@@ -38,7 +38,7 @@
             <if test="p.end != null ">
                 AND  DATE_FORMAT(t.end,'%Y%m%d') &lt;=DATE_FORMAT(#{p.end},'%Y%m%d')
             </if>
-            AND t.deleted ='0' AND t.status!='closed'
+            AND t.deleted ='0' AND t.status IN ('doing','wait')
         </where>
     </sql>
 
