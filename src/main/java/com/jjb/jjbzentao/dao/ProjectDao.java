@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.jjb.jjbzentao.pojo.Project;
 import com.jjb.jjbzentao.pojo.ProjectPO;
 import com.jjb.jjbzentao.pojo.Task;
+import com.jjb.jjbzentao.pojo.Team;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +26,6 @@ public interface ProjectDao extends BaseMapper<Project> {
      * @return
      */
     List<Task> qryTasks(@Param("list")List<Integer> idList);
+
+    List<Team> qryTeamName(@Param("list")List<Integer> idList);
 }
